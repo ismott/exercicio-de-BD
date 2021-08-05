@@ -9,6 +9,7 @@ TipoUsuarioId Smallint Primary Key Identity(1,1),
 NomeTipo Varchar(13) Not Null
 );
 Go
+
 Create Table Estilo(
 EstiloId Tinyint Primary Key Identity(1,1),
 NomeEstilo Varchar(25) Not Null
@@ -31,23 +32,20 @@ NomeEmpresa Char(5) Not Null
 );
 Go
 
-Create Table Gerenciamento(
-GerenciamentoId Smallint Primary Key Identity(1,1),
-OptusId Tinyint Foreign Key References Optus(OptusId)
-);
-Go
-
-Create Table CDs(
-CDsID int Primary Key Identity(1,1),
-EstiloId Tinyint Foreign Key References Estilo(EstiloId),
-NomeCDs Varchar(25)
-);
-Go
-
 Create Table Album(
 AlbumId Smallint Primary Key Identity(1,1),
-GerenciamentoId Smallint Foreign Key References Gerenciamento(GerenciamentoId),
-CDsId int Foreign Key References CDs(CDsId),
+OptusId Tinyint Foreign Key References Optus(OptusId),
 NomeAlbum Varchar(25)
 );
 Go
+
+Create Table AlbumEstilo(
+AlbumEstiloId int Primary Key Identity(1,1),
+EstiloId Tinyint Foreign Key References Estilo(EstiloId),
+AlbumId Smallint Foreign Key References Album(AlbumId)
+);
+Go
+
+
+
+
